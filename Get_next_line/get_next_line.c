@@ -6,13 +6,11 @@
 /*   By: asabbar <asabbar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 00:16:46 by asabbar           #+#    #+#             */
-/*   Updated: 2021/11/26 21:24:50 by asabbar          ###   ########.fr       */
+/*   Updated: 2021/11/28 20:34:40 by asabbar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include<stdio.h>
-#include <fcntl.h>
 
 char	*ft_read(char *rest, int fd)
 {
@@ -48,7 +46,10 @@ char	*ft_line(char *rest)
 		return (NULL);
 	while (rest[i] != '\n' && rest[i])
 		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (ft_strchr(rest, '\n'))
+		line = (char *)malloc(sizeof(char) * (i + 2));
+	else
+		line = (char *)malloc(sizeof(char) * (i + 1));
 	i = 0;
 	while (rest[i] != '\n' && rest[i])
 	{
